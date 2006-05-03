@@ -1,0 +1,124 @@
+#format: sh
+
+#
+# Configuration file for miRBase load jobstream
+#
+# mirbaseload.config.default
+#
+
+# install directory
+MIRBASEINSTALLDIR=/usr/local/mgi/live/dataload/mirbaseload
+export MIRBASEINSTALLDIR
+
+# directories
+FILEDIR=/data/loads/mirbase/mirbaseload
+INPUTDIR=${FILEDIR}/input
+LOGDIR=${FILEDIR}/logs
+RPTDIR=${FILEDIR}/reports
+ARCHIVEDIR=${FILEDIR}/archive
+OUTPUTDIR=${FILEDIR}/output
+export FILEDIR INPUTDIR LOGDIR RPTDIR ARCHIVEDIR OUTPUTDIR
+
+#  log files
+LOG_PROC=${LOGDIR}/mirbaseload.proc.log
+LOG_DIAG=${LOGDIR}/mirbaseload.diag.log
+LOG_CUR=${LOGDIR}/mirbaseload.cur.log
+LOG_VAL=${LOGDIR}/mirbaseload.val.log
+export LOG_PROC LOG_DIAG LOG_CUR LOG_VAL
+
+# job stream user
+JOBSTREAM=mirbase_load
+export JOBSTREAM
+
+# Input file
+INPUT_FILE=${INPUTDIR}/MicroRNAload.txt
+export INPUT_FILE 
+
+# assocload configuration values expected by the association loader product
+ASSOCLOADERDIR=/usr/local/mgi/live/dataload/assocload
+ASSOCLOADER_SH=${ASSOCLOADERDIR}/bin/AssocLoad2.sh
+export ASSOCLOADERDIR ASSOCLOADER_SH
+
+# other assocload configuration values
+ASSOCCONFIG=${MIRBASEINSTALLDIR}/assocload.config
+ASSOCDATADIR=${FILEDIR}/assocload/input
+export ASSOCCONFIG ASSOCDATADIR
+
+# coordload configuration values
+COORDLOADERDIR=/usr/local/mgi/live/dataload/coordload
+COORDLOADER_SH=${COORDLOADERDIR}/bin/coordload.sh
+COORDLOADCONFIG=${MIRBASEINSTALLDIR}/coordload.config
+COORDDATADIR=${FILEDIR}/coordload/input
+export COORDLOADERDIR COORDLOADER_SH COORDLOADCONFIG COORDDATADIR
+
+# mappingload configuration values
+MAPPINGLOADERDIR=/usr/local/mgi/live/dataload/mappingload/mappingload.py
+MAPPINGLOADER_SH=${MIRBASEINSTALLDIR}/mappingload.csh
+MAPPINGDATADIR=${FILEDIR}/mappingload
+export MAPPINGLOADERDIR MAPPINGLOADER_SH MAPPINGLOADCONFIG MAPPINGDATADIR
+
+# marker location cache configuration values
+LOCATIONCACHE_SH=/usr/local/mgi/live/dbutils/mrkcacheload/mrklocation.csh
+export LOCATIONCACHE_SH
+
+# data files
+
+ASSOC_FILE=MGI_MIRBASE.assoc
+COORD_FILE=MGI_MIRBASE.coord
+MAPPING_FILE=MGI_MIRBASE.mapping
+OUTPUT_ASSOC_FILE=${OUTPUTDIR}/${ASSOC_FILE}
+OUTPUT_COORD_FILE=${OUTPUTDIR}/${COORD_FILE}
+OUTPUT_MAPPING_FILE=${OUTPUTDIR}/${MAPPING_FILE}
+INPUT_ASSOC_FILE=${ASSOCDATADIR}/${ASSOC_FILE}
+INPUT_COORD_FILE=${COORDDATADIR}/${COORD_FILE}
+INPUT_MAPPING_FILE=${MAPPINGDATADIR}/${MAPPING_FILE}
+export ASSOC_FILE COORD_FILE MAPPING_FILE
+export OUTPUT_ASSOC_FILE OUTPUT_COORD_FILE OUTPUT_MAPPING_FILE
+export INPUT_ASSOC_FILE INPUT_COORD_FILE INPUT_MAPPING_FILE
+
+# bcp manager
+
+RADAR_BCP_AUTO_FLUSH=false
+RADAR_BCP_DROP_INDEXES=false
+RADAR_BCP_PREVENT_EXECUTE=false
+RADAR_BCP_RECORD_STAMPING=false
+RADAR_BCP_TRUNCATE_LOG=true
+RADAR_BCP_TRUNCATE_TABLE=false
+
+export RADAR_BCP_AUTO_FLUSH RADAR_BCP_DROP_INDEXES 
+export RADAR_BCP_PREVENT_EXECUTE RADAR_BCP_RECORD_STAMPING
+export RADAR_BCP_TRUNCATE_LOG RADAR_BCP_TRUNCATE_TABLE
+
+MGD_BCP_AUTO_FLUSH=false
+MGD_BCP_DROP_INDEXES=false
+MGD_BCP_PREVENT_EXECUTE=false
+MGD_BCP_RECORD_STAMPING=false
+MGD_BCP_TRUNCATE_LOG=true
+MGD_BCP_TRUNCATE_TABLE=false
+
+export MGD_BCP_AUTO_FLUSH MGD_BCP_DROP_INDEXES 
+export MGD_BCP_PREVENT_EXECUTE MGD_BCP_RECORD_STAMPING
+export MGD_BCP_TRUNCATE_LOG MGD_BCP_TRUNCATE_TABLE
+
+# mail
+
+MAIL_LOADNAME="miRBase Data Load"
+MAIL_LOG_PROD="mgiadmin"
+MAIL_LOG_CUR="mgiadmin"
+export MAIL_LOADNAME MAIL_LOG_PROD MAIL_LOG_CUR
+
+# schema product directories
+MGD_DBSCHEMADIR=/usr/local/mgi/live/dbutils/mgd/mgddbschema
+RADAR_DBSCHEMADIR=/usr/local/mgi/live/dbutils/radar/radardbschema
+export MGD_DBSCHEMADIR RADAR_DBSCHEMADIR
+
+# note: the java loads won't inherit this environment
+. ${RADAR_DBSCHEMADIR}/Configuration.sh
+. ${MGD_DBSCHEMADIR}/Configuration.sh
+
+# this is a hack so that DLAInstall will work
+# RADAR_DBSCHEMADIR, MGD_DBSCHEMADIR and DLAInstall all use INSTALLDIR
+# so I'm resetting it manually...
+# once our Configuration issues are fixed, this hack can be removed...
+INSTALLDIR=${MIRBASEINSTALLDIR};export INSTALLDIR
+

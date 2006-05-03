@@ -1,0 +1,16 @@
+To Install mirbaseload:
+
+1) cp mirbaseload.config.default mirbaseload.config and edit as necessary. 
+
+2) cp assocload.config.default assocload.config and edit as necessary. 
+
+3) cp coordload.config.default coordload.config and edit as necessary. 
+   
+4) DLAInstall common.config.sh mirbaseload.config
+
+====================================================================
+
+A typical Install is done from mirbaseload root directory as follows:
+
+/usr/local/mgi/live/dbutils/dlautils/DLAInstall /usr/local/mgi/live/etc/common.config.sh mirbaseload.config
+
