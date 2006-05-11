@@ -87,7 +87,7 @@ fi
 #
 # Perform pre-load tasks.
 #
-#preload
+preload
 
 #
 # remove old output and generated input files
@@ -110,29 +110,29 @@ ln -s ${OUTPUT_COORD_FILE} ${INPUT_COORD_FILE}
 ln -s ${OUTPUT_MAPPING_FILE} ${INPUT_MAPPING_FILE}
 
 # run association marker/mirbase load
-#${ASSOCLOADER_SH} ${CONFIG_LOAD} ${RADAR_DBSCHEMADIR}/Configuration.sh ${MGD_DBSCHEMADIR}/Configuration.sh ${ASSOCCONFIG}
-#STAT=$?
-#checkStatus ${STAT} "${ASSOCLOADER_SH}"
+${ASSOCLOADER_SH} ${CONFIG_LOAD} ${RADAR_DBSCHEMADIR}/Configuration.sh ${MGD_DBSCHEMADIR}/Configuration.sh ${ASSOCCONFIG}
+STAT=$?
+checkStatus ${STAT} "${ASSOCLOADER_SH}"
 
 # run the coordinate load
-#${COORDLOADER_SH} ${CONFIG_LOAD} ${RADAR_DBSCHEMADIR}/Configuration.sh ${MGD_DBSCHEMADIR}/Configuration.sh ${COORDLOADCONFIG}
-#STAT=$?
-#checkStatus ${STAT} "${COORDLOADER_SH}"
+${COORDLOADER_SH} ${CONFIG_LOAD} ${RADAR_DBSCHEMADIR}/Configuration.sh ${MGD_DBSCHEMADIR}/Configuration.sh ${COORDLOADCONFIG}
+STAT=$?
+checkStatus ${STAT} "${COORDLOADER_SH}"
 
 # run the mapping load
-#${MAPPINGLOADER_SH}
-#STAT=$?
-#checkStatus ${STAT} "${MAPPINGLOADER_SH}"
+${MAPPINGLOADER_SH}
+STAT=$?
+checkStatus ${STAT} "${MAPPINGLOADER_SH}"
 
 # run the marker location cache
-#${LOCATIONCACHE_SH}
-#STAT=$?
-#checkStatus ${STAT} "${LOCATIONCACHE_SH}"
+${LOCATIONCACHE_SH}
+STAT=$?
+checkStatus ${STAT} "${LOCATIONCACHE_SH}"
 
 #
 # Perform post-load tasks.
 #
-#shutDown
+shutDown
 
 exit 0
 

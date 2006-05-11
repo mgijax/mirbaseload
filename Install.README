@@ -12,5 +12,5 @@ To Install mirbaseload:
 
 A typical Install is done from mirbaseload root directory as follows:
 
-/usr/local/mgi/live/dbutils/dlautils/DLAInstall /usr/local/mgi/live/etc/common.config.sh mirbaseload.config
+${USRLOCALMGI}/dbutils/dlautils/DLAInstall ${USRLOCALMGI}/etc/common.config.sh mirbaseload.config
 
