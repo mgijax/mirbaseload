@@ -82,7 +82,7 @@ ARCHIVEDIR=${FILEDIR}/archive
 export INPUTDIR FILEDIR LOGDIR RPTDIR OUTPUTDIR ARCHIVEDIR
 
 #  Complete path name of the input file
-INFILE_NAME=${INPUTDIR}/MGI_MIRBASE.coord
+INFILE_NAME=${INPUTDIR}/mirbase_coord.txt
 
 # Send debug messages to the diagnostic log
 LOG_DEBUG=false
@@ -99,7 +99,6 @@ LOG_FACTORY=org.jax.mgi.shr.dla.log.DLALoggerFactory
 export INFILE_NAME LOG_DEBUG CACHE_DEBUG DBDEBUG LOG_FACTORY
 
 # this load's login value for DB table CreatedBy and ModifiedBy
-# e.g. ensembl_assemblyseqload
 JOBSTREAM=mirbase_coordload
 
 export JOBSTREAM
@@ -121,7 +120,7 @@ COORD_ORGANISM="mouse, laboratory"
 
 # version of the coordinate load
 # e.g. "NCBI Build 33"
-COORD_VERSION="NCBI Build 34"
+COORD_VERSION="NCBI Build 36"
 
 export COORD_LOGICALDB COORD_ORGANISM COORD_VERSION
 

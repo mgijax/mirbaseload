@@ -89,28 +89,8 @@ fi
 #
 preload
 
-#
-# remove old output and generated input files
-#
-rm -rf ${OUTPUT_ASSOC_FILE} ${OUTPUT_COORD_FILE} ${OUTPUT_MAPPING_FILE}
-rm -rf ${INPUT_ASSOC_FILE} ${INPUT_COORD_FILE} ${INPUT_MAPPING_FILE}
-
-#
-# parse pass for associations and coordinates
-#
-echo 'Parsing input file for Associations and Coordinates...' | tee -a ${LOG}
-${MIRBASEINSTALLDIR}/mirbaseparse.py | tee -a ${LOG}
-STAT=$?
-checkStatus ${STAT} "mirbaseparse.py"
-
-# create a symbolic link between the parser output file and the loader input file
-
-ln -s ${OUTPUT_ASSOC_FILE} ${INPUT_ASSOC_FILE}
-ln -s ${OUTPUT_COORD_FILE} ${INPUT_COORD_FILE}
-ln -s ${OUTPUT_MAPPING_FILE} ${INPUT_MAPPING_FILE}
-
 # run association marker/mirbase load
-${ASSOCLOADER_SH} ${CONFIG_LOAD} ${RADAR_DBSCHEMADIR}/Configuration.sh ${MGD_DBSCHEMADIR}/Configuration.sh ${ASSOCCONFIG}
+${ASSOCLOADER_SH} ${MGD_DBSERVER} ${MGD_DBNAME} ${MGD_DBUSER} ${MGD_DBPASSWORDFILE} ${ASSOC_JOBSTREAM} ${ASSOC_OBJECTTYPE} ${ASSOC_JNUMBER} ${INPUT_ASSOC_FILE} ${INPUT_ASSOC_FILE}.log >> ${LOG}
 STAT=$?
 checkStatus ${STAT} "${ASSOCLOADER_SH}"
 
@@ -125,10 +105,7 @@ STAT=$?
 checkStatus ${STAT} "${LOCATIONCACHE_SH}"
 
 # run the mapping load
-${MIRBASEINSTALLDIR}/mirbasemapping.py | tee -a ${LOG}
-STAT=$?
-checkStatus ${STAT} "mirbasemapping.py"
-${MAPPINGLOADER_SH}
+${MAPPINGLOADER_SH} ${MAPPINGLOADCONFIG}
 STAT=$?
 checkStatus ${STAT} "${MAPPINGLOADER_SH}"
 
