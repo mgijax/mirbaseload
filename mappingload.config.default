@@ -1,12 +1,11 @@
-#!/bin/sh
+#!/bin/csh
 
-MAPPINGASSAYTYPE=assembly
-MAPPINGDATADIR=/data/loads/mirbase/mirbaseload/mappingload
-MAPPINGDATAFILE=${MAPPINGDATADIR}/mirbase_mapping.txt
-MAPPINGLOG=${MAPPINGDATAFILE}.log
-MAPPINGMODE=full
-JNUM=J:105741
-EXPERIMENTTYPE="TEXT-Physical Mapping"
-CREATEDBY=dbradt
-export MAPPINGASSAYTYPE MAPPINGDATADIR MAPPINGDATAFILE MAPPINGLOG MAPPINGMODE JNUM EXPERIMENTTYPE CREATEDBY
+setenv MAPPINGASSAYTYPE	assembly
+setenv MAPPINGDATADIR	/data/loads/mirbase/mirbaseload/mappingload
+setenv MAPPINGDATAFILE	${MAPPINGDATADIR}/mirbase_mapping.txt
+setenv MAPPINGLOG	${MAPPINGDATAFILE}.log
+setenv MAPPINGMODE	full
+setenv JNUM		J:105741
+setenv EXPERIMENTTYPE	"TEXT-Physical Mapping"
+setenv CREATEDBY	dbradt
 
