@@ -7,7 +7,7 @@
 #
 
 # install directory
-MIRBASEINSTALLDIR=/usr/local/mgi/live/dataload/mirbaseload
+MIRBASEINSTALLDIR=${USRLOCALMGI}/dataload/mirbaseload
 export MIRBASEINSTALLDIR
 
 # directories
@@ -31,29 +31,26 @@ JOBSTREAM=mirbase_load
 export JOBSTREAM
 
 # assocload configuration values
-ASSOCDATADIR=${FILEDIR}/assocload/input
-ASSOCLOADER_SH=${USRLOCALMGI}/dataload/genaccload/accLoad.sh
-ASSOCLOADCONFIG=${MIRBASEINSTALLDIR}/mappingload.config
+ASSOCLOADER_SH=${USRLOCALMGI}/dataload/assocload/bin/AssocLoad2.sh
+ASSOCLOADCONFIG=${MIRBASEINSTALLDIR}/assocload.config
 ASSOC_JOBSTREAM=mirbase_assocload
-ASSOC_OBJECTTYPE=Marker
-ASSOC_JNUMBER=J:105741
-export ASSOCDATADIR ASSOCLOADER_SH ASSOCLOADCONFIG ASSOC_JOBSTREAM ASSOC_OBJECTTYPE ASSOC_JNUMBER
+export ASSOCLOADER_SH ASSOCLOADCONFIG ASSOC_JOBSTREAM
 
 # coordload configuration values
-COORDLOADERDIR=/usr/local/mgi/live/dataload/coordload
+COORDLOADERDIR=${USRLOCALMGI}/dataload/coordload
 COORDLOADER_SH=${COORDLOADERDIR}/bin/coordload.sh
 COORDLOADCONFIG=${MIRBASEINSTALLDIR}/coordload.config
 COORDDATADIR=${FILEDIR}/coordload/input
 export COORDLOADERDIR COORDLOADER_SH COORDLOADCONFIG COORDDATADIR
 
 # mappingload configuration values
-MAPPINGLOADERDIR=/usr/local/mgi/live/dataload/mappingload/mappingload.py
+MAPPINGLOADERDIR=${USRLOCALMGI}/dataload/mappingload/mappingload.py
 MAPPINGLOADER_SH=${MIRBASEINSTALLDIR}/mappingload.csh
 MAPPINGDATADIR=${FILEDIR}/mappingload
 export MAPPINGLOADERDIR MAPPINGLOADER_SH MAPPINGLOADCONFIG MAPPINGDATADIR
 
 # marker location cache configuration values
-LOCATIONCACHE_SH=/usr/local/mgi/live/dbutils/mrkcacheload/mrklocation.csh
+LOCATIONCACHE_SH=${USRLOCALMGI}/dbutils/mrkcacheload/mrklocation.csh
 export LOCATIONCACHE_SH
 
 # data files
@@ -99,8 +96,8 @@ MAIL_LOG_CUR="mgiadmin"
 export MAIL_LOADNAME MAIL_LOG_PROD MAIL_LOG_CUR
 
 # schema product directories
-MGD_DBSCHEMADIR=/usr/local/mgi/live/dbutils/mgd/mgddbschema
-RADAR_DBSCHEMADIR=/usr/local/mgi/live/dbutils/radar/radardbschema
+MGD_DBSCHEMADIR=${USRLOCALMGI}/dbutils/mgd/mgddbschema
+RADAR_DBSCHEMADIR=${USRLOCALMGI}/dbutils/radar/radardbschema
 export MGD_DBSCHEMADIR RADAR_DBSCHEMADIR
 
 # note: the java loads won't inherit this environment
