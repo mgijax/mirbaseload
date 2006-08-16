@@ -90,24 +90,24 @@ fi
 preload
 
 # run association marker/mirbase load
-#${ASSOCLOADER_SH} ${CONFIG_LOAD} ${RADAR_DBSCHEMADIR}/Configuration.sh ${MGD_DBSCHEMADIR}/Configuration.sh ${ASSOCLOADCONFIG}
-#STAT=$?
-#checkStatus ${STAT} "${ASSOCLOADER_SH}"
+${ASSOCLOADER_SH} ${CONFIG_LOAD} ${RADAR_DBSCHEMADIR}/Configuration.sh ${MGD_DBSCHEMADIR}/Configuration.sh ${ASSOCLOADCONFIG}
+STAT=$?
+checkStatus ${STAT} "${ASSOCLOADER_SH}"
 
 # run the coordinate load
-#${COORDLOADER_SH} ${CONFIG_LOAD} ${RADAR_DBSCHEMADIR}/Configuration.sh ${MGD_DBSCHEMADIR}/Configuration.sh ${COORDLOADCONFIG}
-#STAT=$?
-#checkStatus ${STAT} "${COORDLOADER_SH}"
-
-# run the marker location cache
-#${LOCATIONCACHE_SH}
-#STAT=$?
-#checkStatus ${STAT} "${LOCATIONCACHE_SH}"
+${COORDLOADER_SH} ${CONFIG_LOAD} ${RADAR_DBSCHEMADIR}/Configuration.sh ${MGD_DBSCHEMADIR}/Configuration.sh ${COORDLOADCONFIG}
+STAT=$?
+checkStatus ${STAT} "${COORDLOADER_SH}"
 
 # run the mapping load
 ${MAPPINGLOADER_SH} ${MAPPINGLOADCONFIG}
 STAT=$?
 checkStatus ${STAT} "${MAPPINGLOADER_SH}"
+
+# run the marker location cache
+${LOCATIONCACHE_SH}
+STAT=$?
+checkStatus ${STAT} "${LOCATIONCACHE_SH}"
 
 #
 # Perform post-load tasks.
