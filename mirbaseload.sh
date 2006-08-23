@@ -95,7 +95,7 @@ STAT=$?
 checkStatus ${STAT} "${ASSOCLOADER_SH}"
 
 # run the coordinate load
-${COORDLOADER_SH} ${CONFIG_LOAD} ${MGICONFIG}/master.config.sh ${COORDLOADCONFIG}
+${COORDLOADER_SH} ${CONFIG_LOAD} ${COORDLOADCONFIG}
 STAT=$?
 checkStatus ${STAT} "${COORDLOADER_SH}"
 
