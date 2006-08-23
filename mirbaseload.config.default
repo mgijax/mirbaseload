@@ -99,18 +99,3 @@ MAIL_LOG_PROD="mgiadmin"
 MAIL_LOG_CUR="mgiadmin"
 export MAIL_LOADNAME MAIL_LOG_PROD MAIL_LOG_CUR
 
-# schema product directories
-MGD_DBSCHEMADIR=${USRLOCALMGI}/dbutils/mgd/mgddbschema
-RADAR_DBSCHEMADIR=${USRLOCALMGI}/dbutils/radar/radardbschema
-export MGD_DBSCHEMADIR RADAR_DBSCHEMADIR
-
-# note: the java loads won't inherit this environment
-. ${RADAR_DBSCHEMADIR}/Configuration.sh
-. ${MGD_DBSCHEMADIR}/Configuration.sh
-
-# this is a hack so that DLAInstall will work
-# RADAR_DBSCHEMADIR, MGD_DBSCHEMADIR and DLAInstall all use INSTALLDIR
-# so I'm resetting it manually...
-# once our Configuration issues are fixed, this hack can be removed...
-INSTALLDIR=${MIRBASEINSTALLDIR};export INSTALLDIR
-
