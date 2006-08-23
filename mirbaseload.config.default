@@ -6,6 +6,9 @@
 # mirbaseload.config.default
 #
 
+MGICONFIG=${USRLOCALMGI}/mgiconfig
+export MGICONFIG
+
 # install directory
 MIRBASEINSTALLDIR=${USRLOCALMGI}/dataload/mirbaseload
 export MIRBASEINSTALLDIR
