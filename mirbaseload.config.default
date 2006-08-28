@@ -10,8 +10,8 @@ MGICONFIG=${USRLOCALMGI}/mgiconfig
 export MGICONFIG
 
 # install directory
-MIRBASEINSTALLDIR=${USRLOCALMGI}/dataload/mirbaseload
-export MIRBASEINSTALLDIR
+INSTALLDIR=${USRLOCALMGI}/dataload/mirbaseload
+export INSTALLDIR
 
 # directories
 FILEDIR=/data/loads/mirbase/mirbaseload
@@ -35,21 +35,21 @@ export JOBSTREAM
 
 # assocload configuration values
 ASSOCLOADER_SH=${USRLOCALMGI}/dataload/assocload/bin/AssocLoad2.sh
-ASSOCLOADCONFIG=${MIRBASEINSTALLDIR}/assocload.config
+ASSOCLOADCONFIG=${INSTALLDIR}/assocload.config
 ASSOC_JOBSTREAM=mirbase_assocload
 export ASSOCLOADER_SH ASSOCLOADCONFIG ASSOC_JOBSTREAM
 
 # coordload configuration values
 COORDLOADERDIR=${USRLOCALMGI}/dataload/coordload
 COORDLOADER_SH=${COORDLOADERDIR}/bin/coordload.sh
-COORDLOADCONFIG=${MIRBASEINSTALLDIR}/coordload.config
+COORDLOADCONFIG=${INSTALLDIR}/coordload.config
 COORDDATADIR=${FILEDIR}/coordload/input
 export COORDLOADERDIR COORDLOADER_SH COORDLOADCONFIG COORDDATADIR
 
 # mappingload configuration values
 MAPPINGLOADERDIR=${USRLOCALMGI}/dataload/mappingload
 MAPPINGLOADER_SH=${MAPPINGLOADERDIR}/mappingload.csh
-MAPPINGLOADCONFIG=${MIRBASEINSTALLDIR}/mappingload.config
+MAPPINGLOADCONFIG=${INSTALLDIR}/mappingload.config
 MAPPINGDATADIR=${FILEDIR}/mappingload
 export MAPPINGLOADERDIR MAPPINGLOADER_SH MAPPINGLOADCONFIG MAPPINGDATADIR
 

@@ -90,7 +90,7 @@ fi
 preload
 
 # run association marker/mirbase load
-${ASSOCLOADER_SH} ${CONFIG_LOAD} ${MGICONFIG}/master.config.sh ${ASSOCLOADCONFIG}
+${ASSOCLOADER_SH} ${CONFIG_LOAD} ${ASSOCLOADCONFIG}
 STAT=$?
 checkStatus ${STAT} "${ASSOCLOADER_SH}"
 
