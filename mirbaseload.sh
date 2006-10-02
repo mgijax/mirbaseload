@@ -31,23 +31,23 @@
 
 cd `dirname $0`
 
-CONFIG_COMMON=`pwd`/common.config.sh
-CONFIG_LOAD=`pwd`/mirbaseload.config
+CONFIG_MASTER=${MGICONFIG}/master.config.sh
+CONFIG_LOAD=${MIRBASELOAD}/mirbaseload.config
 
 #
 # verify & source the DLA common configuration file
 #
 
-if [ ! -r ${CONFIG_COMMON} ]
+if [ ! -r ${CONFIG_MASTER} ]
 then
-    echo "Cannot read configuration file: ${CONFIG_COMMON}"
+    echo "Cannot read configuration file: ${CONFIG_MASTER}"
     exit 1
 fi
 
-. ${CONFIG_COMMON}
+. ${CONFIG_MASTER}
 
 #
-# verify & source the UniSTS load configuration file
+# verify & source the miRBASE load configuration file
 #
 
 if [ ! -r ${CONFIG_LOAD} ]
