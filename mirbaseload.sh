@@ -31,23 +31,18 @@
 
 cd `dirname $0`
 
-CONFIG_COMMON=`pwd`/common.config.sh
+#
+# create log file
+#
+
+LOG=`pwd`/`basename $0`.log
+rm -rf ${LOG}
+touch ${LOG}
+
 CONFIG_LOAD=`pwd`/mirbaseload.config
 
 #
-# verify & source the DLA common configuration file
-#
-
-if [ ! -r ${CONFIG_COMMON} ]
-then
-    echo "Cannot read configuration file: ${CONFIG_COMMON}"
-    exit 1
-fi
-
-. ${CONFIG_COMMON}
-
-#
-# verify & source the UniSTS load configuration file
+# verify & source the miRBASE load configuration file
 #
 
 if [ ! -r ${CONFIG_LOAD} ]
@@ -57,14 +52,6 @@ then
 fi
 
 . ${CONFIG_LOAD}
-
-#
-# create log file
-#
-
-LOG=${LOGDIR}/`basename $0`.log
-rm -rf ${LOG}
-touch ${LOG}
 
 #
 #  Source the DLA library functions.
