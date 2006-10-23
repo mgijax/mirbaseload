@@ -6,12 +6,17 @@
 # mirbaseload.config.default
 #
 
-MGICONFIG=${USRLOCALMGI}/mgiconfig
-export MGICONFIG
+#
+#  If the MGICONFIG environment variable does not have a local override,
+#  use the default "live" settings.
+#
+if [ "${MGICONFIG}" = "" ]
+then
+    MGICONFIG=/usr/local/mgi/live/mgiconfig
+    export MGICONFIG
+fi
 
-# install directory
-INSTALLDIR=${USRLOCALMGI}/dataload/mirbaseload
-export INSTALLDIR
+. ${MGICONFIG}/master.config.sh
 
 # directories
 FILEDIR=/data/loads/mirbase/mirbaseload
@@ -34,27 +39,25 @@ JOBSTREAM=mirbase_load
 export JOBSTREAM
 
 # assocload configuration values
-ASSOCLOADER_SH=${USRLOCALMGI}/dataload/assocload/bin/AssocLoad2.sh
-ASSOCLOADCONFIG=${INSTALLDIR}/assocload.config
-ASSOC_JOBSTREAM=mirbase_assocload
-export ASSOCLOADER_SH ASSOCLOADCONFIG ASSOC_JOBSTREAM
+ASSOCLOADER_SH=${ASSOCLOAD}/bin/AssocLoad2.sh
+ASSOCLOADCONFIG=${MIRBASELOAD}/assocload.config
+ASSOCDATADIR=${FILEDIR}/assocload/input
+export ASSOCLOADER_SH ASSOCLOADCONFIG ASSOCDATADIR
 
 # coordload configuration values
-COORDLOADERDIR=${USRLOCALMGI}/dataload/coordload
-COORDLOADER_SH=${COORDLOADERDIR}/bin/coordload.sh
-COORDLOADCONFIG=${INSTALLDIR}/coordload.config
+COORDLOADER_SH=${COORDLOAD}/bin/coordload.sh
+COORDLOADCONFIG=${MIRBASELOAD}/coordload.config
 COORDDATADIR=${FILEDIR}/coordload/input
-export COORDLOADERDIR COORDLOADER_SH COORDLOADCONFIG COORDDATADIR
+export COORDLOADER_SH COORDLOADCONFIG COORDDATADIR
 
 # mappingload configuration values
-MAPPINGLOADERDIR=${USRLOCALMGI}/dataload/mappingload
-MAPPINGLOADER_SH=${MAPPINGLOADERDIR}/mappingload.csh
-MAPPINGLOADCONFIG=${INSTALLDIR}/mappingload.config
+MAPPINGLOADER_SH=${MAPPINGLOAD}/mappingload.csh
+MAPPINGLOADCONFIG=${MIRBASELOAD}/mappingload.config
 MAPPINGDATADIR=${FILEDIR}/mappingload
-export MAPPINGLOADERDIR MAPPINGLOADER_SH MAPPINGLOADCONFIG MAPPINGDATADIR
+export MAPPINGLOADER_SH MAPPINGLOADCONFIG MAPPINGDATADIR
 
 # marker location cache configuration values
-LOCATIONCACHE_SH=${USRLOCALMGI}/dbutils/mrkcacheload/mrklocation.csh
+LOCATIONCACHE_SH=${MRKCACHELOAD}/mrklocation.csh
 export LOCATIONCACHE_SH
 
 # data files
@@ -96,4 +99,8 @@ export MGD_BCP_TRUNCATE_LOG MGD_BCP_TRUNCATE_TABLE
 
 MAIL_LOADNAME="miRBase Data Load"
 export MAIL_LOADNAME
+
+# install directory
+INSTALLDIR=${MIRBASELOAD}
+export INSTALLDIR
 

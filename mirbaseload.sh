@@ -31,20 +31,15 @@
 
 cd `dirname $0`
 
-CONFIG_MASTER=${MGICONFIG}/master.config.sh
-CONFIG_LOAD=${MIRBASELOAD}/mirbaseload.config
-
 #
-# verify & source the DLA common configuration file
+# create log file
 #
 
-if [ ! -r ${CONFIG_MASTER} ]
-then
-    echo "Cannot read configuration file: ${CONFIG_MASTER}"
-    exit 1
-fi
+LOG=`pwd`/`basename $0`.log
+rm -rf ${LOG}
+touch ${LOG}
 
-. ${CONFIG_MASTER}
+CONFIG_LOAD=`pwd`/mirbaseload.config
 
 #
 # verify & source the miRBASE load configuration file
@@ -57,14 +52,6 @@ then
 fi
 
 . ${CONFIG_LOAD}
-
-#
-# create log file
-#
-
-LOG=${LOGDIR}/`basename $0`.log
-rm -rf ${LOG}
-touch ${LOG}
 
 #
 #  Source the DLA library functions.

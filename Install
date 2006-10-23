@@ -48,7 +48,6 @@ fi
 # Check to see if this is a development installation
 #
 DEV=""
-echo "DEV=${DEV}"
 if [ "${INSTALL_TYPE}" = "dev" ]
 then
     DEV="-d"
@@ -62,7 +61,6 @@ ${DLAINSTALL} ${DEV}
 
 for c in *.config
 do
-echo "Source ${c}"
 . ${c}
 ${DLAINSTALL} ${DEV}
 done
