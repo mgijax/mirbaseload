@@ -59,7 +59,7 @@ fi
 echo 'running DLAINSTALL'
 ${DLAINSTALL} ${DEV}
 
-for c in *.config
+for c in assocload.config coordload.config
 do
 . ${c}
 ${DLAINSTALL} ${DEV}
