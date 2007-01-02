@@ -38,6 +38,10 @@ export LOG_PROC LOG_DIAG LOG_CUR LOG_VAL
 JOBSTREAM=mirbase_load
 export JOBSTREAM
 
+# input file
+INPUT_FILE=${INPUTDIR}/mirbase_input.txt
+export INPUT_FILE
+
 # assocload configuration values
 ASSOCLOADER_SH=${ASSOCLOAD}/bin/AssocLoad2.sh
 ASSOCLOADCONFIG=${MIRBASELOAD}/assocload.config

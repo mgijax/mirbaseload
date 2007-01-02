@@ -23,11 +23,19 @@
 #
 # INPUT_FILE:  a file of miRBase coordinates and marker associations
 #
+# field 1: mirBASE id
+# field 2: MGI id
+# field 3: marker symbol
+# field 4: chromosome
+# field 5: start bp
+# field 6: end bp
+# field 7: strand
+#
 # Outputs:
 #
-# OUTPUT_ASSOC_FILE:  an input file for marker/mirbase ID assocload
-# OUTPUT_COORD_FILE:  an input file for coordload
-# OUTPUT_MAPPING_FILE:  an input file for mappingload
+# INPUT_ASSOC_FILE:  an input file for marker/mirbase ID assocload
+# INPUT_COORD_FILE:  an input file for coordload
+# INPUT_MAPPING_FILE:  an input file for mappingload
 #
 # Processing:
 #
@@ -59,9 +67,9 @@ TAB = '\t'
 CRT = '\n'
 
 inFileName = os.environ['INPUT_FILE']
-assocFileName = os.environ['OUTPUT_ASSOC_FILE']
-coordFileName = os.environ['OUTPUT_COORD_FILE']
-mappingFileName = os.environ['OUTPUT_MAPPING_FILE']
+assocFileName = os.environ['INPUT_ASSOC_FILE']
+coordFileName = os.environ['INPUT_COORD_FILE']
+mappingFileName = os.environ['INPUT_MAPPING_FILE']
 
 head, tail = os.path.split(sys.argv[0])
 diagFileName = os.environ['OUTPUTDIR'] + '/' + tail + '.diagnostics'
@@ -220,24 +228,23 @@ def process():
         tokens = string.split(line[:-1], TAB)
 
         try:
-	    mirChr = tokens[0]
-	    startCoord = tokens[3]
-	    endCoord = tokens[4]
-	    strand = tokens[5]
-	    mirID = tokens[6]
-	    markerID = 'MGI:' + tokens[8]
-	    markerSymbol = tokens[9]
-	    markerChr = tokens[10]
+	    mirID = tokens[0]
+	    markerID = tokens[1]
+	    markerSymbol = tokens[2]
+	    markerChr = tokens[3]
+	    startCoord = tokens[4]
+	    endCoord = tokens[5]
+	    strand = tokens[6]
 
         except:
 	    errorFile.write('Invalid Line (%d): %s\n' % (lineNum, line))
 	    lineNum = lineNum + 1
 	    continue
-
-	if string.find(mirChr, 'NT_') >= 0:
-	    errorFile.write('NT symbol skipped (%d): %s\n' % (lineNum, mirID))
-	    lineNum = lineNum + 1
-	    continue
+#
+#	if string.find(mirChr, 'NT_') >= 0:
+#	    errorFile.write('NT symbol skipped (%d): %s\n' % (lineNum, mirID))
+#	    lineNum = lineNum + 1
+#	    continue
 
 	assocDict[markerID] = assocline % (markerID, mirID)
 	coordDict[markerID] = coordline % (markerID, markerChr, startCoord, endCoord, strand)
