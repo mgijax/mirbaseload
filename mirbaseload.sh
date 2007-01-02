@@ -79,7 +79,7 @@ preload
 # parse the input file
 ${MIRBASELOAD}/mirbaseparse.py
 STAT=$?
-checkStatus ${STAT} "${MIRBASELOAD}/mirbaseparse.py}"
+checkStatus ${STAT} "${MIRBASELOAD}/mirbaseparse.py"
 
 # run association marker/mirbase load
 ${ASSOCLOADER_SH} ${CONFIG_LOAD} ${ASSOCLOADCONFIG}

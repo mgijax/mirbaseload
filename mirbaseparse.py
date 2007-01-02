@@ -80,7 +80,7 @@ errorFile = ''		# file descriptor
 
 assocline = '%s\t%s\n'
 coordline = '%s\t%s\t%s\t%s\t%s\t\n'
-mappingline = '%s\t%s\tn\t\tassembly\t\n'
+mappingline = '%s\t%s\tyes\t\tassembly\t\n'
 
 def exit(status, message = None):
 	#
@@ -264,5 +264,5 @@ def process():
 
 init()
 process()
-exit(1)
+exit(0)
 
