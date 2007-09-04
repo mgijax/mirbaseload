@@ -20,7 +20,7 @@ fi
 
 # directories
 FILEDIR=/data/loads/mirbase/mirbaseload
-INPUTDIR=${FILEDIR}/input
+INPUTDIR=/mgi/all/wts_projects/8400/8459
 LOGDIR=${FILEDIR}/logs
 RPTDIR=${FILEDIR}/reports
 ARCHIVEDIR=${FILEDIR}/archive
@@ -39,25 +39,25 @@ JOBSTREAM=mirbase_load
 export JOBSTREAM
 
 # input file
-INPUT_FILE=${INPUTDIR}/mirbase_input.txt
+INPUT_FILE=${INPUTDIR}/v10_mirBAse_load_file-final.txt
 export INPUT_FILE
 
 # assocload configuration values
 ASSOCLOADER_SH=${ASSOCLOAD}/bin/AssocLoad2.sh
 ASSOCLOADCONFIG=${MIRBASELOAD}/assocload.config
-ASSOCDATADIR=${FILEDIR}/assocload/input
+ASSOCDATADIR=${INPUTDIR}
 export ASSOCLOADER_SH ASSOCLOADCONFIG ASSOCDATADIR
 
 # coordload configuration values
 COORDLOADER_SH=${COORDLOAD}/bin/coordload.sh
 COORDLOADCONFIG=${MIRBASELOAD}/coordload.config
-COORDDATADIR=${FILEDIR}/coordload/input
+COORDDATADIR=${INPUTDIR}
 export COORDLOADER_SH COORDLOADCONFIG COORDDATADIR
 
 # mappingload configuration values
 MAPPINGLOADER_SH=${MAPPINGLOAD}/mappingload.csh
 MAPPINGLOADCONFIG=${MIRBASELOAD}/mappingload.config
-MAPPINGDATADIR=${FILEDIR}/mappingload
+MAPPINGDATADIR=${INPUTDIR}
 export MAPPINGLOADER_SH MAPPINGLOADCONFIG MAPPINGDATADIR
 
 # marker location cache configuration values

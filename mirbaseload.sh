@@ -92,9 +92,9 @@ STAT=$?
 checkStatus ${STAT} "${COORDLOADER_SH}"
 
 # run the mapping load
-${MAPPINGLOADER_SH} ${MAPPINGLOADCONFIG}
-STAT=$?
-checkStatus ${STAT} "${MAPPINGLOADER_SH}"
+#${MAPPINGLOADER_SH} ${MAPPINGLOADCONFIG}
+#STAT=$?
+#checkStatus ${STAT} "${MAPPINGLOADER_SH}"
 
 # run the marker location cache
 ${LOCATIONCACHE_SH}

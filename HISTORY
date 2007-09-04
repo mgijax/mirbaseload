@@ -1,3 +1,10 @@
+TAG: mirbaseload-3-5-4-1
+DATE: 09/04/2007
+STAFF: sc
+CHANGES: TR8459
+1) updated configuration files to TR directories
+2) updates mirbaseload.sh - commented out call to mappingload
+
 TAG: mirbaseload-3-5-1-9
 TAG: mirbaseload-3-5-1-8
 DATE: 02/02/2007
