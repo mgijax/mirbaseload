@@ -97,9 +97,9 @@ checkStatus ${STAT} "${COORDLOADER_SH}"
 #checkStatus ${STAT} "${MAPPINGLOADER_SH}"
 
 # run the marker location cache
-${LOCATIONCACHE_SH}
-STAT=$?
-checkStatus ${STAT} "${LOCATIONCACHE_SH}"
+#${LOCATIONCACHE_SH}
+#STAT=$?
+#checkStatus ${STAT} "${LOCATIONCACHE_SH}"
 
 #
 # Perform post-load tasks.
