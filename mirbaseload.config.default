@@ -20,7 +20,7 @@ fi
 
 # directories
 FILEDIR=/data/loads/mirbase/mirbaseload
-INPUTDIR=/mgi/all/wts_projects/8400/8459
+INPUTDIR=${FILEDIR}/input
 LOGDIR=${FILEDIR}/logs
 RPTDIR=${FILEDIR}/reports
 ARCHIVEDIR=${FILEDIR}/archive
@@ -39,7 +39,7 @@ JOBSTREAM=mirbase_load
 export JOBSTREAM
 
 # input file
-INPUT_FILE=${INPUTDIR}/v10_mirBAse_load_file-final.txt
+INPUT_FILE=/mgi/all/wts_projects/8500/8528/DataLoad/microrna/Final_miRNA_v37-LOAD_READY.load
 export INPUT_FILE
 
 # assocload configuration values
