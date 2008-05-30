@@ -1,3 +1,15 @@
+TAG: mirbaseload-4-1-0-1
+DATE: 5/30/2008
+STAFF: dbm
+CHANGES:
+1) Merged tr8528 branch to the trunk
+
+TAG: mirbaseload-tr8528-1
+DATE: 5/9/2008
+STAFF: dbm
+CHANGES:
+1) Config changes for build 37
+
 TAG: mirbaseload-tr8528-BP
 DATE: 4/7/2008
 STAFF: dbm
