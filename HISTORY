@@ -1,3 +1,10 @@
+TAG: mirbaseload-4-2-0-1
+DATE: 03/12/2009
+STAFF: sc
+CHANGES: TR7493 - changes won't be used until GTLF release
+    added COORD_FEATURE_MGITYPE and COORD_FEATURE_MGITYPE
+    to coordload.config
+
 TAG: mirbaseload-4-1-0-1
 DATE: 5/30/2008
 STAFF: dbm
