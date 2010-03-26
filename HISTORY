@@ -1,3 +1,4 @@
+TAG: mirbaseload-4-3-3-2
 TAG: mirbaseload-4-3-3-1
 DATE: 03/26/2010
 STAFF: sc
@@ -10,6 +11,7 @@ CHANGES: TR10021
    when reloading curator provides incremental file
    in TR directory and an se catenates the two
    Should always test in dev first!!
+4) made more dla compliant in general
 
 TAG: mirbaseload-4-2-0-1
 DATE: 03/12/2009

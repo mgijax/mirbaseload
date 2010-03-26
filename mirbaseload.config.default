@@ -39,8 +39,8 @@ JOBSTREAM=mirbase_load
 export JOBSTREAM
 
 # input file
-INPUT_FILE=${INPUTDIR}/microrna_master.txt
-export INPUT_FILE
+INFILE_NAME=${INPUTDIR}/microrna_master.txt
+export INFILE_NAME
 
 # assocload configuration values
 ASSOCLOADER_SH=${ASSOCLOAD}/bin/AssocLoad2.sh
