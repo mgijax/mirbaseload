@@ -1,27 +1,27 @@
 #!/usr/local/bin/python
 
 #
-# Program: mirbaseparse.py
+# Program: mirbaseload.py
 #
 # Original Author: Lori E. Corbani
 #
 # Purpose:
 #
-# 1.  To generate a association loader input file, 
-#     a coordinate loader input file and a mapping loader input file
-#     from the MGI-hand-curated file MicroRNAload.txt
-#     which are then loaded into MGI via the association loader,
-#     the coordinate loader and the mapping loader.
+# 1.  To generate a association load input file, 
+#     and a coordinate load input file 
+#     from the MGI-hand-curated file microrna_master.txt
+#     which are then loaded into MGI via the association load
+#     and the coordinate load.
 #
 # Requirements Satisfied by This Program:
 #
-# Usage:  mirbaseparse.py
+# Usage:  mirbaseload.py 
 #
 # Envvars:
 #
 # Inputs:
 #
-# INPUT_FILE:  a file of miRBase coordinates and marker associations
+# INFILE_NAME:  a file of miRBase coordinates and marker associations
 #
 # field 1: mirBASE id
 # field 2: MGI id
@@ -35,7 +35,6 @@
 #
 # INPUT_ASSOC_FILE:  an input file for marker/mirbase ID assocload
 # INPUT_COORD_FILE:  an input file for coordload
-# INPUT_MAPPING_FILE:  an input file for mappingload
 #
 # Processing:
 #
@@ -50,6 +49,9 @@
 #    Modules:
 #
 # Modification History:
+#
+# 03/25/2010	sc
+#	- TR 10021
 #
 # 05/02/2006	lec
 #	- TR 4460/MGI 3.5
@@ -66,21 +68,14 @@ import loadlib
 TAB = '\t'
 CRT = '\n'
 
-inFileName = os.environ['INPUT_FILE']
+inFileName = os.environ['INFILE_NAME']
 assocFileName = os.environ['INPUT_ASSOC_FILE']
 coordFileName = os.environ['INPUT_COORD_FILE']
-mappingFileName = os.environ['INPUT_MAPPING_FILE']
 
 head, tail = os.path.split(sys.argv[0])
-diagFileName = os.environ['OUTPUTDIR'] + '/' + tail + '.diagnostics'
-errorFileName = os.environ['OUTPUTDIR'] + '/' + tail + '.error'
-
-diagFile = ''		# file descriptor
-errorFile = ''		# file descriptor
 
 assocline = '%s\t%s\n'
 coordline = '%s\t%s\t%s\t%s\t%s\t\n'
-mappingline = '%s\t%s\tyes\t\tassembly\t\n'
 
 def exit(status, message = None):
 	#
@@ -97,46 +92,12 @@ def exit(status, message = None):
 	sys.stderr.write('\n' + str(message) + '\n')
  
     try:
-	diagFile.write('\n\nEnd Date/Time: %s\n' % (mgi_utils.date()))
-	errorFile.write('\n\nEnd Date/Time: %s\n' % (mgi_utils.date()))
-	diagFile.close()
-	errorFile.close()
-    except:
-	pass
-
-    try:
 	db.useOneConnection()
     except:
 	pass
 
     sys.exit(status)
  
-def init():
-	#
-	# requires: 
-	#
-	# effects: 
-	# 1. Processes command line options
-	# 2. Initializes global file descriptors/file names
-	#
-	# returns:
-	#
- 
-    global diagFile, errorFile, diagFileName, errorFileName
- 
-    try:
-	diagFile = open(diagFileName, 'w')
-    except:
-	exit(1, 'Could not open file %s\n' % diagFileName)
-		
-    try:
-	errorFile = open(errorFileName, 'w')
-    except:
-	exit(1, 'Could not open file %s\n' % errorFileName)
-		
-    diagFile.write('Start Date/Time: %s\n\n' % (mgi_utils.date()))
-    errorFile.write('Start Date/Time: %s\n\n' % (mgi_utils.date()))
-
 def writeAssoc(assocDict):
 	#
 	# requires:
@@ -147,12 +108,12 @@ def writeAssoc(assocDict):
 	#
 	# returns:  nothing
 	#
-
     try:
 	assocFile = open(assocFileName, 'w')
     except:
 	exit(1, 'Could not open file %s\n' % assocFileName)
-		
+
+    print "Total associations written to assocload file: %s" % len(assocDict)
     assocFile.write('MGI\tmiRBase\n')
     for r in assocDict.keys():
         assocFile.write(assocDict[r])
@@ -174,32 +135,12 @@ def writeCoord(coordDict):
 	coordFile = open(coordFileName, 'w')
     except:
 	exit(1, 'Could not open file %s\n' % coordFileName)
-		
+
+    print "Total coordinates written to coordload file: %s" % len(coordDict)
     for c in coordDict.keys():
         coordFile.write(coordDict[c])
 
     coordFile.close()
-
-def writeMapping(mappingDict):
-	#
-	# requires:
-	#    mappingDict (dictionary):  a key:value dictionary
-	#
-	# effects: 
-	# 1. Writes each Mapping record to the output mapping file
-	#
-	# returns:  nothing
-	#
-
-    try:
-	mappingFile = open(mappingFileName, 'w')
-    except:
-	exit(1, 'Could not open file %s\n' % mappingFileName)
-		
-    for r in mappingDict.keys():
-        mappingFile.write(mappingDict[r])
-
-    mappingFile.close()
 
 def process():
 	#
@@ -207,14 +148,13 @@ def process():
 	#
 	# effects: 
 	#   input:  Micro RNA input file
-	#   output: association loader file, coordinate loader file, mapping loader file
+	#   output: association load file and coordinate load file
 	#
 	# returns:  nothing
 	#
 
     assocDict = {}
     coordDict = {}
-    mappingDict = {}
 
     try:
 	inFile = open(inFileName, 'r')
@@ -230,7 +170,7 @@ def process():
         try:
 	    mirID = tokens[0]
 	    markerID = tokens[1]
-	    markerSymbol = tokens[2]
+	    markerSymbol = tokens[2] # we don't use this
 	    markerChr = tokens[3]
 	    startCoord = tokens[4]
 	    endCoord = tokens[5]
@@ -240,21 +180,14 @@ def process():
 	    errorFile.write('Invalid Line (%d): %s\n' % (lineNum, line))
 	    lineNum = lineNum + 1
 	    continue
-#
-#	if string.find(mirChr, 'NT_') >= 0:
-#	    errorFile.write('NT symbol skipped (%d): %s\n' % (lineNum, mirID))
-#	    lineNum = lineNum + 1
-#	    continue
 
 	assocDict[markerID] = assocline % (markerID, mirID)
 	coordDict[markerID] = coordline % (markerID, markerChr, startCoord, endCoord, strand)
-	mappingDict[markerID] = mappingline % (markerID, markerChr)
 
         lineNum = lineNum + 1
 
     writeAssoc(assocDict)
     writeCoord(coordDict)
-    writeMapping(mappingDict)
 
     inFile.close()
 
@@ -262,7 +195,6 @@ def process():
 # Main Routine
 #
 
-init()
 process()
 exit(0)
 

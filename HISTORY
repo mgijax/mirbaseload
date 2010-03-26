@@ -1,3 +1,16 @@
+TAG: mirbaseload-4-3-3-1
+DATE: 03/26/2010
+STAFF: sc
+CHANGES: TR10021
+1) rmvd mapping scripts, reorganized product and
+   logging
+2) input now expected in the load input directory
+3) microrna_master.txt is the master file of all 
+   mirbase coordinates and IDs in the database
+   when reloading curator provides incremental file
+   in TR directory and an se catenates the two
+   Should always test in dev first!!
+
 TAG: mirbaseload-4-2-0-1
 DATE: 03/12/2009
 STAFF: sc

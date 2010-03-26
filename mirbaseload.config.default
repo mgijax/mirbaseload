@@ -39,7 +39,7 @@ JOBSTREAM=mirbase_load
 export JOBSTREAM
 
 # input file
-INPUT_FILE=/mgi/all/wts_projects/8500/8528/DataLoad/microrna/Final_miRNA_v37-LOAD_READY.load
+INPUT_FILE=${INPUTDIR}/microrna_master.txt
 export INPUT_FILE
 
 # assocload configuration values
