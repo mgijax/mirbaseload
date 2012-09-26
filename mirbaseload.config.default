@@ -19,7 +19,7 @@ fi
 . ${MGICONFIG}/master.config.sh
 
 # directories
-FILEDIR=/data/loads/mirbase/mirbaseload
+FILEDIR=${DATALOADSOUTPUT}/mirbase/mirbaseload
 INPUTDIR=${FILEDIR}/input
 LOGDIR=${FILEDIR}/logs
 RPTDIR=${FILEDIR}/reports
