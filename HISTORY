@@ -1,3 +1,9 @@
+TAG: mirbaseload-5-1-4-1
+DATE: 10/19/2012
+STAFF: dbm
+CHANGES:
+1) coordload.config: Use sym link for each jar file in JAVA_LIB path
+
 TAG: mirbaseload-5-1-0-1
 DATE: 10/19/2012
 STAFF: dbm
