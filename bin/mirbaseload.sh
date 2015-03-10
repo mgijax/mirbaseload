@@ -128,7 +128,8 @@ cleanDir ${OUTPUTDIR}
 #
 # process the input file
 #
-echo "\n`date`" >> ${LOG_DIAG} 
+echo "" >> ${LOG_DIAG} 
+echo "`date`" >> ${LOG_DIAG} 
 echo "Processing input file ${INFILE_NAME}" | tee -a ${LOG_DIAG}
 ${MIRBASELOAD}/bin/mirbaseload.py | tee -a ${LOG_DIAG} ${LOG_PROC}
 STAT=$?
@@ -137,7 +138,8 @@ checkStatus ${STAT} "${MIRBASELOAD}/mirbaseload.py"
 #
 # run marker/mirbaseID association load
 #
-echo "\n`date`" >> ${LOG_DIAG} 
+echo "" >> ${LOG_DIAG} 
+echo "`date`" >> ${LOG_DIAG} 
 echo "Running association load" | tee -a ${LOG_DIAG}
 ${ASSOCLOADER_SH} ${CONFIG_LOAD} ${ASSOCLOADCONFIG} >> ${LOG_DIAG}
 STAT=$?
@@ -146,7 +148,8 @@ checkStatus ${STAT} "${ASSOCLOADER_SH}"
 #
 # run the coordinate load
 #
-echo "\n`date`" >> ${LOG_DIAG}
+echo "" >> ${LOG_DIAG}
+echo "`date`" >> ${LOG_DIAG}
 echo "Running coordinate load" | tee -a ${LOG_DIAG}
 ${COORDLOADER_SH} ${CONFIG_LOAD} ${COORDLOADCONFIG}  >> ${LOG_DIAG}
 STAT=$?
@@ -154,7 +157,8 @@ checkStatus ${STAT} "${COORDLOADER_SH}"
 
 if [ ${LOAD_CACHE} = "true" ]
 then
-    echo "\n`date`" >> ${LOG_DIAG}
+    echo "" >> ${LOG_DIAG}
+    echo "`date`" >> ${LOG_DIAG}
     echo "Running marker location cacheload"| tee -a ${LOG_DIAG}
     ${LOCATIONCACHE_SH} >> ${LOG_DIAG}
     STAT=$?
